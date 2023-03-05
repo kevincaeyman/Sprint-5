@@ -7,5 +7,9 @@ async function printJoke() {
         }
     })
         .then(res => { return res.json() })
-        .then(data => console.log(data.joke))
+        .then(data => {
+            const joke = data.joke;
+            console.log(joke);
+            document.getElementById("joke").innerHTML = `${joke} <br><br>`
+        })
 }
