@@ -6,5 +6,6 @@ async function printJoke() {
             'Accept': 'application/json'
         }
     })
-        .then(joke => console.log(joke.json()))
+        .then(res => { return res.json() })
+        .then(data => console.log(data.joke))
 }
