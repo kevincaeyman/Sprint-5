@@ -10,17 +10,40 @@ const jokeReport = []
 
 
 async function printJoke() {
-    await fetch("https://icanhazdadjoke.com/", {
-        headers: {
-            'Accept': 'application/json'
-        }
-    })
-        .then(res => { return res.json() })
-        .then(data => {
-            joke = data.joke;
-            console.log(joke);
-            document.getElementById("jokeDOM").innerHTML = `${joke} <br><br>`
+    const index = Math.ceil(Math.random() * 20)
+
+    if (index % 2 == 0) {
+        await fetch("https://icanhazdadjoke.com/", {
+            headers: {
+                'Accept': 'application/json'
+            }
         })
+            .then(res => { return res.json() })
+            .then(data => {
+                joke = data.joke;
+                console.log(joke);
+                document.getElementById("jokeDOM").innerHTML = `${joke} <br><br>`
+            })
+    }
+    else {
+        const options = {
+            method: 'GET',
+            headers: {
+                accept: 'application/json',
+                'X-RapidAPI-Key': 'd0dcabd082msh388012e7b29cd9cp1d1ac9jsnc2f0f1c9e449',
+                'X-RapidAPI-Host': 'matchilling-chuck-norris-jokes-v1.p.rapidapi.com'
+            }
+        };
+
+        await fetch('https://matchilling-chuck-norris-jokes-v1.p.rapidapi.com/jokes/random', options)
+            .then(response => response.json())
+            .then(data => {
+                joke = data.value;
+                console.log(joke)
+                document.getElementById("jokeDOM").innerHTML = `${joke} <br><br>`
+            })
+            .catch(err => console.error(err));
+    }
 }
 
 
@@ -58,7 +81,7 @@ const weatherOptions = {
 };
 
 fetch('https://weatherapi-com.p.rapidapi.com/current.json?q=Barcelona', weatherOptions)
-    .then(res => {return res.json() })
+    .then(res => { return res.json() })
     .then(data => {
         currentWeater = data.current.condition.text;
         document.getElementById("currentWeater").innerHTML = `The current weather is: <br> ${currentWeater} <br><br>`
