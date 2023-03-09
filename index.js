@@ -3,9 +3,13 @@ document.getElementById("nextJoke").addEventListener("click", showButtons)
 document.getElementById("ratingButton1").addEventListener("click", function () { jokeRating(1) })
 document.getElementById("ratingButton2").addEventListener("click", function () { jokeRating(2) })
 document.getElementById("ratingButton3").addEventListener("click", function () { jokeRating(3) })
+import { weatherConditionsArray } from "./weatherConditions.js"
 
 let joke = ""
-let currentWeater = ""
+let currentTemperature = ""
+let weatherIcon = ""
+let weatherIconIndex = ""
+let weatherTimestamp = ""
 const jokeReport = []
 
 
@@ -67,9 +71,9 @@ function jokeRating(rating) {
 }
 
 function showButtons() {
-    document.getElementById("ratingButton1").innerHTML = '<button id="ratingButton1" class="btn btn-info text-white m-1"> ⭐️ </button>'
-    document.getElementById("ratingButton2").innerHTML = '<button id="ratingButton2" class="btn btn-info text-white m-1">⭐️ ⭐️</button>'
-    document.getElementById("ratingButton3").innerHTML = '<button id="ratingButton3" class="btn btn-info text-white m-1">⭐️ ⭐️ ⭐️</button>'
+    document.getElementById("ratingButton1").innerHTML = '<button id="ratingButton1" class="ratingButton"> <img src="./images/anxious_emoji.svg"> </button>'
+    document.getElementById("ratingButton2").innerHTML = '<button id="ratingButton2" class="ratingButton"><img src="./images/awkward_emoji.svg"></button>'
+    document.getElementById("ratingButton3").innerHTML = '<button id="ratingButton3" class="ratingButton"> <img src="./images/laughing_emoji.svg"></button>'
 }
 
 const weatherOptions = {
@@ -83,7 +87,17 @@ const weatherOptions = {
 fetch('https://weatherapi-com.p.rapidapi.com/current.json?q=Barcelona', weatherOptions)
     .then(res => { return res.json() })
     .then(data => {
-        currentWeater = data.current.condition.text;
-        document.getElementById("currentWeater").innerHTML = `The current weather is: <br> ${currentWeater} <br><br>`
+        console.log(data)
+        currentTemperature = data.current.feelslike_c;
+        weatherIconIndex = data.current.condition.code
+        weatherIconIndex = weatherConditionsArray.findIndex(c => c.code === weatherIconIndex)
+        weatherIcon = weatherConditionsArray[weatherIconIndex].icon
 
+        weatherTimestamp = new Date().getHours()
+
+        if (weatherTimestamp > 6 && weatherTimestamp < 20) {
+            document.getElementById("currentWeater").innerHTML = `<img src="weather/64x64/day/${weatherIcon}.png" width="64" height="64">${currentTemperature} °C`
+
+        }
+        else { document.getElementById("currentWeater").innerHTML = `<img src="weather/64x64/night/${weatherIcon}.png" width="64" height="64">${currentTemperature} °C` }
     })

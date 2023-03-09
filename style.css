@@ -1,0 +1,83 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%238B74B5' d='M29.4 -46.5C42 -43.6 59 -43.7 71.1 -36.5C83.3 -29.2 90.7 -14.6 90.8 0.1C91 14.8 83.8 29.5 72.1 37.5C60.3 45.5 44 46.8 31.3 50C18.5 53.1 9.2 58.2 -3.6 64.5C-16.5 70.7 -33 78.2 -46.2 75.3C-59.5 72.4 -69.6 59.2 -70.5 44.9C-71.4 30.6 -63.2 15.3 -60.8 1.4C-58.4 -12.6 -62 -25.2 -58.9 -35.8C-55.9 -46.4 -46.3 -55 -35.4 -58.9C-24.5 -62.8 -12.2 -62.1 -1.9 -58.7C8.4 -55.4 16.7 -49.4 29.4 -46.5Z' transform='translate(100 100)' /%3E%3C/svg%3E");
+  background-attachment: scroll;
+  background-position: center;
+  background-size: 55%;
+  background-repeat: no-repeat;
+  background-position-y: -75px;
+  min-height: 100vh;
+}
+.navbar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  flex-flow: column;
+  text-align: center;
+  align-self: center;
+  justify-content: center;
+  min-height: 70vh;
+}
+.content {
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}
+.joke {
+  position: relative;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  word-break:normal;
+ 
+}
+.jokeButton {
+  position: absolute;
+  border-radius: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 25px;
+  padding-left: 25px;
+  border-radius: 20px;
+  border: 2px solid;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  width: 117px;
+  background-color: transparent;
+  z-index: 999;
+}
+.buttonBackground {
+  max-width: 117px;
+  position: relative;
+  right: -15px;
+}
+.ratingButton {
+  border-radius: 5px;
+  border-radius: 20px;
+  border: transparent;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  background-color: transparent;
+  z-index: 999;
+}
+button:hover {
+  background-color: #ffb02e;
+  transition: 0.5s;
+}
+/* .buttonBackground{
+  position: relative;
+  border-radius: 20px;
+  border: none;
+  background-color: #E1BE57;
+  width: 117px;
+  background: transparent;
+  height: 35px;
+} */
